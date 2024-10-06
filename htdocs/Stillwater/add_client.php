@@ -53,7 +53,7 @@
         }
         input[type="text"],
         input[type="email"] {
-            width: 100%;
+            width: 95%;
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;

@@ -48,7 +48,9 @@
             background-color: #333;
             color: white;
             padding: 10px 20px 10px 20px;
-
+        }
+        .outputs td {
+            text-align: center;
         }
 
     </style>
@@ -98,7 +100,7 @@
 
         ?>
 
-        <tr>
+        <tr class="outputs">
             <td><?php echo $row['Client_id']; ?></td>
             <td><?php echo $row['First_name']; ?></td>
             <td><?php echo $row['Lastname']; ?></td>
