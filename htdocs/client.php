@@ -84,10 +84,30 @@
 
             <th>Client_id</th>
             <th>Client_name</th>
+            <th>Client_email</th>
             <th>Client_address</th>
             <th>Client_phone_no.</th>
 
         </tr>
+        <?php
+
+        $sql = "SELECT * FROM Client";
+        $result = mysqli_query($conn, $sql);
+        while($row = mysqli_fetch_array($result)) {
+
+        ?>
+
+        <tr>
+            <td><?php echo $row['Client_id']; ?></td>
+            <td><?php echo $row['Client_email']; ?></td>
+            <td><?php echo $row['Client_name']; ?></td>
+            <td><?php echo $row['Client_address']; ?></td>
+            <td><?php echo $row['Client_phone_no.']; ?></td>
+        </tr>
+
+        <?php
+        }
+        ?>
     </table>
 </body>
 </html>
