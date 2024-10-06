@@ -1,5 +1,5 @@
 <?php
-    include 'db_connection.php';
+    include ('db_connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +48,7 @@
             background-color: #333;
             color: white;
             padding: 10px 20px 10px 20px;
-            width: 25%;
+
         }
 
     </style>
@@ -82,27 +82,29 @@
     <table class="Display_table">
         <tr>
 
-            <th>Client_id</th>
-            <th>Client_name</th>
-            <th>Client_email</th>
-            <th>Client_address</th>
-            <th>Client_phone_no.</th>
+            <th>Client id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone Number</th>
 
         </tr>
         <?php
 
-        $sql = "SELECT * FROM Client";
-        $result = mysqli_query($conn, $sql);
+        $query = "SELECT * FROM Client";
+        $result = mysqli_query($conn, $query);
         while($row = mysqli_fetch_array($result)) {
 
         ?>
 
         <tr>
             <td><?php echo $row['Client_id']; ?></td>
-            <td><?php echo $row['Client_email']; ?></td>
-            <td><?php echo $row['Client_name']; ?></td>
-            <td><?php echo $row['Client_address']; ?></td>
-            <td><?php echo $row['Client_phone_no.']; ?></td>
+            <td><?php echo $row['Firstname']; ?></td>
+            <td><?php echo $row['Lastname']; ?></td>
+            <td><?php echo $row['Phone_number']; ?></td>
+            <td><?php echo $row['Email']; ?></td>
+            <td><?php echo $row['Address']; ?></td>
         </tr>
 
         <?php

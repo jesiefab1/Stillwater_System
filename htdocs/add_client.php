@@ -1,5 +1,6 @@
 <?php
-    include 'db_connection.php';
+    // Include the database connection file
+    include ('db_connection.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,14 +37,16 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
-            position: relative;
-            left: 38%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         h1 {
             text-align: center;
             color: #333;
         }
-        label {
+        label, small {
             display: block;
             margin-bottom: 5px;
             color: #555;
@@ -79,40 +82,48 @@
 
     <div class="container">
         <h1>Add New Client</h1>
-        <form action="insert_client.php" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <form action="" method="POST">
+            <label for="name">First Name:</label>
+            <input type="text" name="firstname" required>
+
+            <label for="name">Last Name:</label>
+            <input type="text"  name="lastname" required>
             
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" name="email" required>
             
             <label for="phone">Phone:</label>
-            <input type="text" id="phone" name="phone" required>
+            <input type="text" name="phone" required>
             
             <label for="address">Address:</label>
-            <input type="text" id="address" name="address" required>
+            <input type="text" name="address" required>
             
             <input type="submit" name="submit" value="Add Client">
         </form>
     </div>
     <?php
-        if(isset($_POST['submit'])) {
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $phone = $_POST['phone'];
-            $address = $_POST['address'];
+    // Check if the form is submitted
+    if(isset($_POST['submit'])) {
+        // Get form data
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
 
-            $sql = "INSERT INTO Client (Client_name, Client_email, Client_phone_no., Client_address) VALUES ('$name', '$email', '$phone', '$address')";
-            
-            $result = mysqli_query($conn, $sql);
+        // Prepare the SQL query
+        $query = "INSERT INTO Client (Firstname, Lastname, Email, Phone_number, Address) VALUES ('$firstname', '$lastname', '$email', '$phone', '$address')";
+        
+        // Execute the SQL query
+        $result = mysqli_query($conn, $query);
 
-            if ($result) {
-                echo "New record created successfully";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+        // Check if the query is executed
+        if ($result) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $query . "<br>" . mysqli_error($conn);
         }
-    ?>
-
+    }
+?>
 </body>
 </html>
