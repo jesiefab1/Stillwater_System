@@ -53,11 +53,11 @@
     </div>
 
     <div class="insertion">
-        <button >
+        <button onclick="window.location.href='add_client.php'">
             Add Client
         </button>
-        <button >
-            Add Furniture
+        <button onclick="window.location.href='add_item.php'">
+            Add Item
         </button>    
     </div>
     
