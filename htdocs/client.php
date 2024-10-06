@@ -42,6 +42,7 @@
         }
         .Display_table {
             margin: auto;
+            margin-top: 40px;
         }
         .Display_table th {
             background-color: #333;
@@ -61,6 +62,22 @@
         <li><a href="sales.php">Sales</a></li>
 
     </ul>
+
+        <div style="text-align: right; margin: 20px;">
+            <button onclick="window.location.href='insert.php'" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease;">
+            Add
+            </button>
+        </div>
+        <script>
+            document.querySelector('button').addEventListener('mouseover', function() {
+            this.style.backgroundColor = '#45a049';
+            this.style.transform = 'scale(1.05)';
+            });
+            document.querySelector('button').addEventListener('mouseout', function() {
+            this.style.backgroundColor = '#4CAF50';
+            this.style.transform = 'scale(1)';
+            });
+        </script>
 
     <table class="Display_table">
         <tr>
