@@ -100,7 +100,7 @@
 
         <tr>
             <td><?php echo $row['Client_id']; ?></td>
-            <td><?php echo $row['Firstname']; ?></td>
+            <td><?php echo $row['First_name']; ?></td>
             <td><?php echo $row['Lastname']; ?></td>
             <td><?php echo $row['Phone_number']; ?></td>
             <td><?php echo $row['Email']; ?></td>

@@ -59,6 +59,11 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
         input[type="submit"] {
             width: 100%;
             padding: 10px;
@@ -84,7 +89,7 @@
         <h1>Add New Client</h1>
         <form action="" method="POST">
             <label for="name">First Name:</label>
-            <input type="text" name="firstname" required>
+            <input type="text" name="first_name" required>
 
             <label for="name">Last Name:</label>
             <input type="text"  name="lastname" required>
@@ -98,21 +103,21 @@
             <label for="address">Address:</label>
             <input type="text" name="address" required>
             
-            <input type="submit" name="submit" value="Add Client">
+            <input type="submit" name="submit" value="Add Client" onclick="window.location.href='insert.php'">
         </form>
     </div>
     <?php
     // Check if the form is submitted
     if(isset($_POST['submit'])) {
         // Get form data
-        $firstname = $_POST['firstname'];
+        $first_name = $_POST['first_name'];
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $address = $_POST['address'];
 
         // Prepare the SQL query
-        $query = "INSERT INTO Client (Firstname, Lastname, Email, Phone_number, Address) VALUES ('$firstname', '$lastname', '$email', '$phone', '$address')";
+        $query = "INSERT INTO Client (First_name, Lastname, Email, Phone_number, Address) VALUES ('$first_name', '$lastname', '$email', '$phone', '$address')";
         
         // Execute the SQL query
         $result = mysqli_query($conn, $query);
