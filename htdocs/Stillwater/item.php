@@ -43,11 +43,14 @@
         .Display_table {
             margin: auto;
             margin-top: 40px;
+            margin-left: 20px;
+            margin-right: 20px;
         }
         .Display_table th {
             background-color: #333;
             color: white;
             padding: 10px 20px 10px 20px;
+            width: 5%;
         }
         .outputs td {
             text-align: center;
@@ -95,7 +98,7 @@
         </tr>
         <?php
 
-        $query = "SELECT * FROM Item";
+        $query = "SELECT * FROM Item, Client WHERE Item.Client_id = Client.Client_id";
         $result = mysqli_query($conn, $query);
         while($row = mysqli_fetch_array($result)) {
 
