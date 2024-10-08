@@ -59,11 +59,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-        }
         input[type="submit"] {
             width: 100%;
             padding: 10px;

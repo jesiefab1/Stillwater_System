@@ -80,6 +80,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        #client_id {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
         input[type="submit"] {
             width: 100%;
             padding: 10px;
