@@ -1,27 +1,8 @@
 <?php
-// Include database connection file
-include 'db_connection.php';
-
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $item_name = $_POST['Item_name'];
-    $client_id = $_POST['Client_id'];
-    $description = $_POST['description'];
-    $asking_price = $_POST['asking_price'];
-    $condition = $_POST['condition'];
-
-    // Prepare and bind
-    $query = "INSERT INTO Items (Client_id, Item_name, Item_description, Asking_price, Condition, Comments) VALUES ('$Client', '$Item_name', '$description', '$asking_price', '$condition', '$comments')";
-    $result = mysqli_query($conn, $query);
-
-    // Check if the query is executed
-    if ($result) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $query . "<br>" . mysqli_error($conn);
-    }
-}
+    // Include database connection file
+    include 'db_connection.php';
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -80,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        #client_id {
+        .client_id {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -112,35 +93,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container">
         <h2>Add New Item</h2>
-        <form method="post" action="">
+        <form method="POST" action="">
             <label for="item_name">Item Name:</label>
-            <input type="text" id="item_name" name="Item_name" required>
+            <input type="text" name="Item_name" required>
             
             <label for="client_id">Client ID:</label>
-            <select id="client_id" name="Client_id" required>
+            <select class="client_id" name="Client_id" required>
                 <option value="">Select Client</option>
                 <?php
-                if  ($query = "SELECT Client_id, Lastname, First_name FROM Client")
+                    $query = "SELECT Client_id, Lastname, First_name FROM Client";
                     $result = mysqli_query($conn, $query);
-                    while($row = mysqli_fetch_array($result)) {
-
-                    echo "<option value='" . $row['Client_id'] . "'>" . $row['Lastname'] . ", " . $row['First_name'] . "</option>";
+                    if ($result) {
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo "<option value='" . $row['Client_id'] . "'>" . $row['Lastname'] . ", " . $row['First_name'] . "</option>";
+                        }
+                    } else {
+                        echo "Error: " . mysqli_error($conn);
+                    }
                 
-                }
                 ?>
             </select>
             
             <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
+            <textarea name="description" required></textarea>
             
             <label for="asking_price">Asking Price:</label>
-            <input type="number" id="asking_price" name="asking_price" step="0.01" required>
+            <input type="number" name="asking_price" step="0.01" required>
             
             <label for="condition">Condition:</label>
-            <input type="text" id="condition" name="condition" required>
+            <input type="text" name="condition" required>
             
-            <input type="submit" value="Add Item">
+            <input type="submit" name="submit" value="Add Item">
         </form>
     </div>
+
+    <?php
+// Check if form is submitted
+if(isset($_POST['submit'])) {
+    $Item_name = $_POST['Item_name'];
+    $Client_id = $_POST['Client_id'];
+    $description = $_POST['description'];
+    $asking_price = $_POST['asking_price'];
+    $condition = $_POST['condition'];
+
+    // Prepare and bind
+    $query = "INSERT INTO Item (Client_id, Item_name, Item_description, Asking_price, `Condition`) VALUES ('$Client_id', '$Item_name', '$description', '$asking_price', '$condition')";
+    $result = mysqli_query($conn, $query);
+
+    // Check if the query is executed
+    if ($result) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $query . "<br>" . mysqli_error($conn);
+    }
+}
+?>
+
 </body>
 </html>
