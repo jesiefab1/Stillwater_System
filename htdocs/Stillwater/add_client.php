@@ -1,6 +1,29 @@
 <?php
     // Include the database connection file
     include ('db_connection.php');
+
+    // Check if the form is submitted
+    if(isset($_POST['submit'])) {
+        // Get form data
+        $first_name = $_POST['first_name'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
+
+        // Prepare the SQL query
+        $query = "INSERT INTO Client (First_name, Lastname, Email, Phone_number, Address) VALUES ('$first_name', '$lastname', '$email', '$phone', '$address')";
+        
+        // Execute the SQL query
+        $result = mysqli_query($conn, $query);
+
+        // Check if the query is executed
+        if ($result) {
+            $success = true;
+        } else {
+            echo "Error: " . $query . "<br>" . mysqli_error($conn);
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +31,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Client</title>
+    <script>
+        // JavaScript to redirect to the client page if the insertion was successful
+        <?php if ($success): ?>
+        window.onload = function() {
+            alert("Client added successfully!");
+            window.location.href = "client.php";
+        };
+        <?php endif; ?>
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -98,32 +130,8 @@
             <label for="address">Address:</label>
             <input type="text" name="address" required>
             
-            <input type="submit" name="submit" value="Add Client" onclick="window.location.href='insert.php'">
+            <input type="submit" name="submit" value="Add Client">
         </form>
     </div>
-    <?php
-    // Check if the form is submitted
-    if(isset($_POST['submit'])) {
-        // Get form data
-        $first_name = $_POST['first_name'];
-        $lastname = $_POST['lastname'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $address = $_POST['address'];
-
-        // Prepare the SQL query
-        $query = "INSERT INTO Client (First_name, Lastname, Email, Phone_number, Address) VALUES ('$first_name', '$lastname', '$email', '$phone', '$address')";
-        
-        // Execute the SQL query
-        $result = mysqli_query($conn, $query);
-
-        // Check if the query is executed
-        if ($result) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $query . "<br>" . mysqli_error($conn);
-        }
-    }
-?>
 </body>
 </html>
