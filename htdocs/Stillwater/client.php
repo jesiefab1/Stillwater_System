@@ -1,5 +1,12 @@
 <?php
     include ('db_connection.php');
+
+    function updateButton () {
+        echo "<button onclick='window.location.href='update_client.php'' class = 'updateButton'>
+        Update
+        </button>";
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +59,15 @@
         .outputs td {
             text-align: center;
         }
+        .updateButton {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
 
     </style>
 </head>
@@ -64,6 +80,7 @@
         <li><a href="sales.php">Sales</a></li>
 
     </ul>
+    
 
         <div style="text-align: right; margin: 20px;">
             <button onclick="window.location.href='insert.php'" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease;">
@@ -106,7 +123,7 @@
             <td><?php echo $row['Lastname']; ?></td>
             <td><?php echo $row['Phone_number']; ?></td>
             <td><?php echo $row['Email']; ?></td>
-            <td><?php echo $row['Address']; ?></td>
+            <td><?php echo $row['Address']; updateButton() ?></td>
         </tr>
 
         <?php
