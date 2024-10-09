@@ -4,6 +4,7 @@
 
     // Check if the form is submitted
     if(isset($_POST['submit'])) {
+
         // Get form data
         $first_name = $_POST['first_name'];
         $lastname = $_POST['lastname'];
@@ -31,7 +32,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Client</title>
+
     <script>
+
         // JavaScript to redirect to the client page if the insertion was successful
         <?php if ($success): ?>
         window.onload = function() {
@@ -39,8 +42,11 @@
             window.location.href = "client.php";
         };
         <?php endif; ?>
+
     </script>
+
     <style>
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -104,7 +110,9 @@
         input[type="submit"]:hover {
             background-color: #218838;
         }
+        
     </style>
+
 </head>
 <body>
 
