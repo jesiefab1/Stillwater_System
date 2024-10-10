@@ -55,8 +55,8 @@
         .Display_table {
             margin: auto;
             margin-top: 40px;
-            margin-left: 20px;
-            margin-right: 20px;
+            margin-bottom: 40px;
+            width: 80%;
             border-collapse: collapse;
         }
         .Display_table th, .Display_table td {
@@ -67,13 +67,12 @@
             background-color: #333;
             color: white;
             padding: 10px 20px 10px 20px;
-            width: 5%;
         }
         .outputs td {
             text-align: center;
         }
-                /* Styling for the update and delete buttons */
-                .updateButton, .deleteButton {
+        /* Styling for the update and delete buttons */
+        .updateButton, .deleteButton {
             padding: 10px 20px;
             color: white;
             border: none;
@@ -141,10 +140,12 @@
 
         </tr>
         <?php
-
         $query = "SELECT * FROM Item, Client WHERE Item.Client_id = Client.Client_id";
         $result = mysqli_query($conn, $query);
         while($row = mysqli_fetch_array($result)) {
+
+        setlocale(LC_MONETARY, 'c', 'en-PH');
+
 
         ?>
 
@@ -152,7 +153,7 @@
             <td><?php echo $row['Client_id']; ?></td>
             <td><?php echo $row['Item_name']; ?></td>
             <td><?php echo $row['Item_description']; ?></td>
-            <td><?php echo $row['Asking_price']; ?></td>
+            <td><?php echo number_format($row['Asking_price'], 2); ?></td>
             <td><?php echo $row['Condition']; ?></td>
             <td><?php echo $row['Comments']; ?></td>
             <td>

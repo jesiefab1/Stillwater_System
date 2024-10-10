@@ -57,6 +57,7 @@
         .Display_table {
             margin: auto;
             margin-top: 40px;
+            margin-bottom: 40px;
             width: 80%;
             border-collapse: collapse;
         }
