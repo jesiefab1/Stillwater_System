@@ -131,7 +131,6 @@
     <table class="Display_table">
         <tr>
 
-            <th>Item No.</th>
             <th>Client id</th>
             <th>Item Name</th>
             <th>Item Description</th>
@@ -150,7 +149,6 @@
         ?>
 
         <tr class="outputs">
-            <td><?php echo $row['Item_number']; ?></td>
             <td><?php echo $row['Client_id']; ?></td>
             <td><?php echo $row['Item_name']; ?></td>
             <td><?php echo $row['Item_description']; ?></td>

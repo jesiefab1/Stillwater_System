@@ -49,7 +49,7 @@ if (isset($_GET['Item_number'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Client</title>
+    <title>Update Item</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -81,9 +81,17 @@ if (isset($_GET['Item_number'])) {
             color: #555;
         }
         input[type="text"],
-        input[type="email"] {
+        input[type="number"],
+        select {
             padding: 10px;
             margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .client_id {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
@@ -102,10 +110,10 @@ if (isset($_GET['Item_number'])) {
 </head>
 <body>
     <div class="container">
-        <h1>Update Client</h1>
+        <h1>Update Item</h1>
         <form method="POST" action="">
             <label for="Client_id">Client ID:</label>
-            <select id="Client_id" name="Client_id" required>
+            <select class="client_id" name="Client_id" required>
                 <option value="">Select Client</option>
                 <?php
                     $query = "SELECT Client_id, Lastname, First_name FROM Client";

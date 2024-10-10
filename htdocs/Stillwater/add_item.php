@@ -89,7 +89,6 @@
         }
         input[type="text"],
         input[type="number"],
-        textarea,
         select {
             width: 95%;
             padding: 8px;
@@ -151,7 +150,7 @@
             </select>
             
             <label for="description">Description:</label>
-            <textarea name="description" required></textarea>
+            <input type="text" name="description" required></input>
             
             <label for="asking_price">Asking Price:</label>
             <input type="number" name="asking_price" step="0.01" required>

@@ -133,8 +133,7 @@
     <table class="Display_table">
         <tr>
             <th>Client id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Name</th>
             <th>Phone Number</th>
             <th>Email</th>
             <th>Address</th>
@@ -142,15 +141,15 @@
         </tr>
         <?php
         // Query to select all clients from the database
-        $query = "SELECT * FROM Client";
+        $query = "SELECT * FROM Client
+        ORDER BY Lastname ASC";
         $result = mysqli_query($conn, $query);
         // Loop through each row in the result set and display it in the table
         while($row = mysqli_fetch_array($result)) {
         ?>
         <tr class="outputs">
             <td><?php echo $row['Client_id']; ?></td>
-            <td><?php echo $row['First_name']; ?></td>
-            <td><?php echo $row['Lastname']; ?></td>
+            <td><?php echo $row['Lastname'] . ", " . $row['First_name']; ?></td>
             <td><?php echo $row['Phone_number']; ?></td>
             <td><?php echo $row['Email']; ?></td>
             <td><?php echo $row['Address']; ?></td>
