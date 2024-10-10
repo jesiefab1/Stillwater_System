@@ -1,13 +1,49 @@
 <?php
     // Include database connection file
     include 'db_connection.php';
+
+    // Check if form is submitted
+    if(isset($_POST['submit'])) {
+        $Item_name = $_POST['Item_name'];
+        $Client_id = $_POST['Client_id'];
+        $description = $_POST['description'];
+        $asking_price = $_POST['asking_price'];
+        $condition = $_POST['condition'];
+    
+        // Prepare and bind
+        $query = "INSERT INTO Item (Client_id, Item_name, Item_description, Asking_price, `Condition`) VALUES ('$Client_id', '$Item_name', '$description', '$asking_price', '$condition')";
+        $result = mysqli_query($conn, $query);
+    
+        // Check if the query is executed
+        if ($result) {
+            $success = true;
+        } else {
+            echo "Error: " . $query . "<br>" . mysqli_error($conn);
+        }
+    }
+
 ?>
 
 
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Item</title>
+
+    <script>
+
+    // JavaScript to redirect to the client page if the insertion was successful
+    <?php if ($success): ?>
+    window.onload = function() {
+        alert("Item added successfully!");
+        window.location.href = "item.php";
+    };
+    <?php endif; ?>
+
+    </script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -126,28 +162,6 @@
             <input type="submit" name="submit" value="Add Item">
         </form>
     </div>
-
-    <?php
-// Check if form is submitted
-if(isset($_POST['submit'])) {
-    $Item_name = $_POST['Item_name'];
-    $Client_id = $_POST['Client_id'];
-    $description = $_POST['description'];
-    $asking_price = $_POST['asking_price'];
-    $condition = $_POST['condition'];
-
-    // Prepare and bind
-    $query = "INSERT INTO Item (Client_id, Item_name, Item_description, Asking_price, `Condition`) VALUES ('$Client_id', '$Item_name', '$description', '$asking_price', '$condition')";
-    $result = mysqli_query($conn, $query);
-
-    // Check if the query is executed
-    if ($result) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $query . "<br>" . mysqli_error($conn);
-    }
-}
-?>
 
 </body>
 </html>

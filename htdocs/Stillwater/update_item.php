@@ -28,7 +28,7 @@ if (isset($_GET['Item_number'])) {
         $Condition = $_POST['Condition'];
 
         // Update the client data in the database
-        $stmt = $conn->prepare("UPDATE Item SET Client_id = ?, Item_name = ?, Item_description = ?, Asking_price = ?, Condition = ? WHERE Item_number = ?");
+        $stmt = $conn->prepare("UPDATE Item SET Client_id = ?, Item_name = ?, Item_description = ?, Asking_price = ?, `Condition` = ? WHERE Item_number = ?");
         $stmt->bind_param("issdsi", $Client_id, $Item_name, $Item_description, $Asking_price, $Condition, $Item_number);
         if ($stmt->execute()) {
             // Redirect to the client page after updating
@@ -105,8 +105,8 @@ if (isset($_GET['Item_number'])) {
         <h1>Update Client</h1>
         <form method="POST" action="">
             <label for="Client_id">Client ID:</label>
-            <input type="text" id="Client_id" name="first_name" value="<?php echo htmlspecialchars($item['Client_id']); ?>" required>
-            <option value="">Select Client</option>
+            <select id="Client_id" name="Client_id" required>
+                <option value="">Select Client</option>
                 <?php
                     $query = "SELECT Client_id, Lastname, First_name FROM Client";
                     $result = mysqli_query($conn, $query);
@@ -118,20 +118,20 @@ if (isset($_GET['Item_number'])) {
                     } else {
                         echo "Error: " . mysqli_error($conn);
                     }
-                
                 ?>
+            </select>
 
             <label for="Item_name">Item Name:</label>
-            <input type="text" id="Item_name" name="last_name" value="<?php echo htmlspecialchars($item['Item_name']); ?>" required>
+            <input type="text" id="Item_name" name="Item_name" value="<?php echo htmlspecialchars($item['Item_name']); ?>" required>
 
             <label for="Item_description">Item Description:</label>
-            <input type="text" id="Item_description" name="phone_number" value="<?php echo htmlspecialchars($item['Item_description']); ?>" required>
+            <input type="text" id="Item_description" name="Item_description" value="<?php echo htmlspecialchars($item['Item_description']); ?>" required>
 
             <label for="Asking_price">Asking Price:</label>
-            <input type="number" id="Asking_price" name="email" value="<?php echo htmlspecialchars($item['Asking_price']); ?>" required>
+            <input type="number" id="Asking_price" name="Asking_price" value="<?php echo htmlspecialchars($item['Asking_price']); ?>" required>
 
             <label for="Condition">Condition:</label>
-            <input type="text" id="Condition" name="address" value="<?php echo htmlspecialchars($item['Condition']); ?>" required>
+            <input type="text" id="Condition" name="Condition" value="<?php echo htmlspecialchars($item['Condition']); ?>" required>
 
             <button type="submit">Update Item</button>
         </form>

@@ -2,13 +2,13 @@
     include ('db_connection.php');
 
     function updateButton($Item_number) {
-        echo '<button onclick="window.location.href=\'update_client.php?Item_number=' . $Item_number . '\'" class="updateButton">
+        echo '<button onclick="window.location.href=\'update_item.php?Item_number=' . $Item_number . '\'" class="updateButton">
         Update
         </button>';
     }
     
     function deleteButton($Item_number) {
-        echo '<button onclick="window.location.href=\'delete_client.php?Item_number=' . $Item_number . '\'" class="deleteButton">
+        echo '<button onclick="window.location.href=\'delete_item.php?Item_number=' . $Item_number . '\'" class="deleteButton">
         Delete
         </button>';
     }
