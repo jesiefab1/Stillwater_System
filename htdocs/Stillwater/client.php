@@ -1,17 +1,16 @@
 <?php
+    include ('db_connection.php');
 
-include ('db_connection.php');
+    function updateButton($Client_id) {
+        echo '<button onclick="window.location.href=\'update_client.php?Client_id=' . $Client_id . '\'" class="updateButton">
+        Update
+        </button>';
+    }
 
-function updateButton($Client_id) {
-    echo '<button onclick="window.location.href=\'update_client.php?Client_id=' . $Client_id . '\'" class="updateButton">
-    Update
-    </button>';
-}
-
-function deleteButton($Client_id) {
-    echo '<button onclick="window.location.href=\'delete_client.php?Client_id=' . $Client_id . '\'" class="deleteButton">
-    Delete
-    </button>';
+    function deleteButton($Client_id) {
+        echo '<button onclick="window.location.href=\'delete_client.php?Client_id=' . $Client_id . '\'" class="deleteButton">
+        Delete
+        </button>';
 }
 ?>
 

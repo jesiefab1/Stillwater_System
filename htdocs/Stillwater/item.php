@@ -1,5 +1,17 @@
 <?php
     include ('db_connection.php');
+
+    function updateButton($Item_number) {
+        echo '<button onclick="window.location.href=\'update_client.php?Item_number=' . $Item_number . '\'" class="updateButton">
+        Update
+        </button>';
+    }
+    
+    function deleteButton($Item_number) {
+        echo '<button onclick="window.location.href=\'delete_client.php?Item_number=' . $Item_number . '\'" class="deleteButton">
+        Delete
+        </button>';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +57,11 @@
             margin-top: 40px;
             margin-left: 20px;
             margin-right: 20px;
+            border-collapse: collapse;
+        }
+        .Display_table th, .Display_table td {
+            border: 1px solid #ddd;
+            padding: 8px;
         }
         .Display_table th {
             background-color: #333;
@@ -55,7 +72,34 @@
         .outputs td {
             text-align: center;
         }
-
+                /* Styling for the update and delete buttons */
+                .updateButton, .deleteButton {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-right: 5px; /* Add some space between the buttons */
+        }
+        .updateButton {
+            background-color: #4CAF50;
+        }
+        .deleteButton {
+            background-color: #f44336;
+        }
+        .updateButton:hover {
+            background-color: #45a049;
+        }
+        .deleteButton:hover {
+            background-color: #e53935;
+        }
+        /* Container for the buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -94,6 +138,7 @@
             <th>Asking Price</th>
             <th>Condition</th>
             <th>Comments</th>
+            <th>Actions</th>
 
         </tr>
         <?php
@@ -112,6 +157,12 @@
             <td><?php echo $row['Asking_price']; ?></td>
             <td><?php echo $row['Condition']; ?></td>
             <td><?php echo $row['Comments']; ?></td>
+            <td>
+                <div class="button-container">
+                    <?php updateButton($row['Item_number']); ?>
+                    <?php deleteButton($row['Item_number']); ?>
+                </div>
+            </td>
         </tr>
 
         <?php
